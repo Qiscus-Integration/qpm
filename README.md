@@ -4,15 +4,41 @@ Command-line tool untuk akses Qiscus Project Management.
 
 ## Download
 
-Download binary sesuai OS kamu:
+### Via terminal (direkomendasikan)
 
-| OS | File |
-|---|---|
-| Windows | `qpm.exe` |
-| macOS | `qpm-macos` |
-| Linux | `qpm-linux` |
+**Windows** (PowerShell — jalankan sebagai Administrator):
 
-Simpan ke PATH (misal: `C:\Windows\System32\` untuk Windows, atau `/usr/local/bin/` untuk macOS/Linux).
+```powershell
+Invoke-WebRequest -Uri "https://github.com/Qiscus-Integration/qpm/releases/latest/download/cli-win.exe" -OutFile "C:\Windows\System32\qpm.exe"
+```
+
+**macOS**:
+
+```bash
+curl -L https://github.com/Qiscus-Integration/qpm/releases/latest/download/cli-macos -o qpm
+chmod +x qpm
+sudo mv qpm /usr/local/bin/qpm
+```
+
+**Linux**:
+
+```bash
+curl -L https://github.com/Qiscus-Integration/qpm/releases/latest/download/cli-linux -o qpm
+chmod +x qpm
+sudo mv qpm /usr/local/bin/qpm
+```
+
+### Manual download
+
+Download file dari [halaman Releases](https://github.com/Qiscus-Integration/qpm/releases/latest), lalu simpan ke PATH:
+
+| OS | File | Rename ke | Taruh di |
+| --- | --- | --- | --- |
+| Windows | `cli-win.exe` | `qpm.exe` | `C:\Windows\System32\` |
+| macOS | `cli-macos` | `qpm` | `/usr/local/bin/` |
+| Linux | `cli-linux` | `qpm` | `/usr/local/bin/` |
+
+> macOS/Linux: jalankan `chmod +x qpm` setelah download sebelum dipindah ke PATH.
 
 ## Cara Pakai
 
