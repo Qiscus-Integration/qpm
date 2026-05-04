@@ -43,8 +43,8 @@ printf '\n'
 
 # --- detect OS / arch ---------------------------------------------------------
 case "$(uname -s)" in
-  Linux*)  OS="linux";  ASSET="cli-linux"  ;;
-  Darwin*) OS="macos";  ASSET="cli-macos"  ;;
+  Linux*)  OS="linux";  ASSET="qpm-linux"  ;;
+  Darwin*) OS="macos";  ASSET="qpm-macos"  ;;
   *)
     err "Unsupported OS: $(uname -s)"
     err "qpm currently supports macOS and Linux."
@@ -122,6 +122,15 @@ if ! command -v qpm >/dev/null 2>&1; then
   warn "qpm installed at $TARGET but is not on \$PATH."
   warn "Add this to your shell profile and reload (or open a new terminal):"
   warn "  export PATH=\"$QPM_INSTALL_DIR:\$PATH\""
+fi
+
+# --- seed server URL ----------------------------------------------------------
+# So `qpm login` defaults to the server this installer came from. Skip if a
+# config already exists — never clobber an existing token.
+if [ ! -f "$HOME/.qpm/config.json" ]; then
+  mkdir -p "$HOME/.qpm"
+  printf '{\n  "server": "%s"\n}\n' "$QPM_SERVER" > "$HOME/.qpm/config.json"
+  chmod 600 "$HOME/.qpm/config.json" 2>/dev/null || true
 fi
 
 # --- success ------------------------------------------------------------------
